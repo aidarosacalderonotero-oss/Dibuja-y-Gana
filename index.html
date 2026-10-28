@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dibuja y Adivina</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #3023ae, #8b5cf6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      color: #28205c;
+    }
+
+    .juego {
+      width: 100%;
+      max-width: 430px;
+      text-align: center;
+    }
+
+    h1 {
+      color: white;
+      font-size: 38px;
+      margin-bottom: 10px;
+    }
+
+    .subtitulo {
+      color: white;
+      margin-bottom: 25px;
+    }
+
+    .tarjeta {
+      background: white;
+      border-radius: 25px;
+      padding: 28px;
+      box-shadow: 0 12px 35px #17104455;
+    }
+
+    .icono { font-size: 65px; }
+
+    input, button {
+      width: 100%;
+      padding: 15px;
+      margin-top: 14px;
+      border-radius: 12px;
+      font-size: 16px;
+    }
+
+    input {
+      border: 2px solid #e2ddff;
+      outline-color: #7957f5;
+    }
+
+    button {
+      border: none;
+      background: #ffc928;
+      color: #28205c;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .secundario {
+      background: #7155f5;
+      color: white;
+    }
+
+    #mensaje {
+      font-weight: bold;
+      overflow-wrap: anywhere;
+    }
+  </style>
+</head>
+<body>
+  <main class="juego">
+    <h1>🎨 Dibuja y Adivina</h1>
+    <p class="subtitulo">¡Dibuja, adivina y juega con tus amigos!</p>
+
+    <section class="tarjeta">
+      <div class="icono">🖌️</div>
+      <h2>¡Que comience la diversión!</h2>
+      <p>Escribe tu nombre para comenzar.</p>
+
+      <input id="nombre" placeholder="Tu nombre" maxlength="20">
+
+      <button onclick="crearPartida()">🎮 Crear partida</button>
+      <button class="secundario" onclick="unirseSala()">👥 Unirse a una sala</button>
+
+      <p id="mensaje"></p>
+    </section>
+  </main>
+
+  <script>
+    function crearPartida() {
+      const nombre = document.getElementById("nombre").value.trim();
+      const mensaje = document.getElementById("mensaje");
+
+      if (!nombre) {
+        mensaje.textContent = "Escribe tu nombre para continuar.";
+        return;
+      }
+
+      const codigo = Math.random().toString(36).substring(2, 7).toUpperCase();
+      mensaje.textContent = "¡Hola, " + nombre + "! Tu código de sala es: " + codigo;
+    }
+
+    function unirseSala() {
+      const nombre = document.getElementById("nombre").value.trim();
+      const mensaje = document.getElementById("mensaje");
+
+      if (!nombre) {
+        mensaje.textContent = "Escribe tu nombre primero.";
+        return;
+      }
+
+      mensaje.textContent = "¡Hola, " + nombre + "! La opción para ingresar un código estará disponible próximamente.";
+    }
+  </script>
+</body>
+</html>
